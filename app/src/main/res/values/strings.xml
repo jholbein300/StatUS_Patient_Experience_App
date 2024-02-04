@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">StatUS_Patient_Home</string>
+    <string name="welcome">Welcome!</string>
+    <string name="care_history">Care History</string>
+    <string name="shared_history">Shared History</string>
+    <string name="logout">Logout</string>
 </resources>

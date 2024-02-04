@@ -8,12 +8,30 @@
     android:backgroundTint="#3A405A"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/care_history_button"
+        android:layout_width="250dip"
+        android:layout_height="60dip"
+        android:layout_marginTop="330dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="@string/care_history"
+        android:textColor="#FFFFFF"
+
+        android:textColorHighlight="#F55866"
+        android:textColorLink="#F55866"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.50"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="92dp"
-        android:text="Welcome!"
+        android:layout_marginTop="130dp"
+        android:text="@string/welcome"
         android:textColor="#AEC5EB"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -24,14 +42,32 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="232dp"
+        android:id="@+id/shared_history_button"
+        android:layout_width="250dip"
+        android:layout_height="60dip"
+        android:layout_marginTop="430dp"
         android:background="@drawable/rounded_corner"
         android:clickable="false"
         android:contextClickable="false"
-        android:text="Button"
+        android:text="@string/shared_history"
+        android:textColor="#FFFFFF"
+
+        android:textColorHighlight="#F55866"
+        android:textColorLink="#F55866"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="250dip"
+        android:layout_height="60dip"
+        android:layout_marginTop="530dp"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="@string/logout"
         android:textColor="#FFFFFF"
 
         android:textColorHighlight="#F55866"
