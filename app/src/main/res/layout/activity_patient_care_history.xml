@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3A405A"
+    android:backgroundTint="#3A405A"
+    tools:context=".PatientCareHistory">
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="@string/logout"
+        android:textColor="#FFFFFF"
+
+        android:textColorHighlight="#F55866"
+        android:textColorLink="#F55866"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.948"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/home_button"
+        android:layout_width="100dip"
+        android:layout_height="30dip"
+        android:layout_marginTop="20dip"
+        android:background="@drawable/rounded_corner"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:text="@string/home_button"
+        android:textColor="#FFFFFF"
+
+        android:textColorHighlight="#F55866"
+        android:textColorLink="#F55866"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dip"
+        android:text="@string/welcome_patient"
+        android:textColor="#AEC5EB"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/timelinePlaceholder"
+        android:layout_width="333dp"
+        android:layout_height="489dp"
+        android:layout_marginTop="40dp"
+        android:contentDescription="@string/placeholder_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/timeline">
+
+    </ImageView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,4 +4,7 @@
     <string name="care_history">Care History</string>
     <string name="shared_history">Shared History</string>
     <string name="logout">Logout</string>
+    <string name="home_button">Home</string>
+    <string name="welcome_patient">Welcome, [patient name]!</string>
+    <string name="placeholder_description">Timeline Placeholder</string>
 </resources>
