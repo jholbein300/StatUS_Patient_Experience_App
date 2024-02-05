@@ -84,7 +84,9 @@
         android:background="@color/black"
         android:text="TestButton"
         android:textColor="@android:color/white"
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="213dp" />
+        app:layout_constraintBottom_toTopOf="@+id/care_history_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
