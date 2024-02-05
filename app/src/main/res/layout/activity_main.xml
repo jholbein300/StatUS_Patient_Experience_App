@@ -18,7 +18,6 @@
         android:contextClickable="false"
         android:text="@string/care_history"
         android:textColor="#FFFFFF"
-
         android:textColorHighlight="#F55866"
         android:textColorLink="#F55866"
         app:layout_constraintEnd_toEndOf="parent"
