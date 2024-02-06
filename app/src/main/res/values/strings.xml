@@ -7,4 +7,8 @@
     <string name="home_button">Home</string>
     <string name="welcome_patient">Welcome, [patient name]!</string>
     <string name="placeholder_description">Timeline Placeholder</string>
+    <string name="login">Login</string>
+    <string name="forgot_pass">Forgot Password</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
 </resources>
