@@ -9,7 +9,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/care_history_button"
+        android:id="@+id/careHistoryButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
         android:layout_marginTop="330dp"
@@ -41,7 +41,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/shared_history_button"
+        android:id="@+id/sharedHistoryButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
         android:layout_marginTop="430dp"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/logout_button"
+        android:id="@+id/logoutButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
         android:layout_marginTop="530dp"

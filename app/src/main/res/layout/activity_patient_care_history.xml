@@ -9,7 +9,7 @@
     tools:context=".PatientCareHistory">
 
     <Button
-        android:id="@+id/logout_button"
+        android:id="@+id/logoutButton"
         android:layout_width="100dip"
         android:layout_height="30dip"
         android:layout_marginTop="20dip"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/home_button"
+        android:id="@+id/homeButton"
         android:layout_width="100dip"
         android:layout_height="30dip"
         android:layout_marginTop="20dip"

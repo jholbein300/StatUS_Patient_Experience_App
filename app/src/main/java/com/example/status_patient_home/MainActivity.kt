@@ -10,8 +10,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var logout_button = findViewById<Button>(R.id.logout_button)
-        logout_button.setOnClickListener {
+        var careHistoryButton = findViewById<Button>(R.id.careHistoryButton)
+        careHistoryButton.setOnClickListener {
+            val intent = Intent(this, PatientCareHistory::class.java)
+            startActivity(intent)
+        }
+
+        var logoutButton = findViewById<Button>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
             val intent = Intent(this, Login_View::class.java)
             startActivity(intent)
         }
