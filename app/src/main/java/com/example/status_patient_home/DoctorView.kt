@@ -12,6 +12,17 @@ class DoctorView : AppCompatActivity() {
         setContentView(R.layout.activity_doctor_view)
 
 
+        var logoutButton = findViewById<Button>(R.id.logoutButton)
+        logoutButton.setOnClickListener {
+            val intent = Intent(this, Login_View::class.java)
+            startActivity(intent)
+        }
+
+        var homeButton = findViewById<Button>(R.id.homeButton)
+        homeButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         var spinnerId = findViewById<Spinner>(R.id.patientSpinner)
     }
