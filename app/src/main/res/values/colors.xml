@@ -2,7 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="home_view_buttons">#F45B69</color>
 
     <color name="purple_200">#3A405A</color>
     <color name="purple_500">#FF6200EE</color>

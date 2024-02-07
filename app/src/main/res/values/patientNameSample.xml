@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="patientName_array">
+        <item>T. Smith</item>
+        <item>A. Young</item>
+    </string-array>
+</resources>
