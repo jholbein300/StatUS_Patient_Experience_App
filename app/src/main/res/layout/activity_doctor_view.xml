@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/logoutButton"
         android:layout_width="100dip"
-        android:layout_height="30dip"
+        android:layout_height="48dip"
         android:layout_marginTop="20dip"
         android:background="@drawable/rounded_corner"
         android:clickable="false"
@@ -44,7 +44,7 @@
     <Button
         android:id="@+id/homeButton"
         android:layout_width="100dip"
-        android:layout_height="30dip"
+        android:layout_height="48dip"
         android:layout_marginTop="20dip"
         android:background="@drawable/rounded_corner"
         android:clickable="false"
@@ -62,8 +62,8 @@
     <Spinner
         android:id="@+id/patientSpinner"
         style="@android:style/Widget.DeviceDefault.Light.Spinner"
-        android:layout_width="243dp"
-        android:layout_height="37dp"
+        android:layout_width="250dip"
+        android:layout_height="48dip"
         android:layout_marginTop="75dp"
         android:background="@color/text_color"
         android:dropDownSelector="@color/black"
@@ -79,22 +79,23 @@
     <Button
         android:id="@+id/enterBtn"
         android:layout_width="150dip"
-        android:layout_height="40dip"
+        android:layout_height="48dip"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:text="@string/enter"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/patientSpinner"
-        app:layout_constraintVertical_bias="0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:src="@drawable/timeline"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,8 +105,8 @@
         tools:srcCompat="@drawable/timeline" />
 
     <android.widget.SearchView
-        android:layout_width="357dp"
-        android:layout_height="37dp"
+        android:layout_width="360dip"
+        android:layout_height="48dip"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:inputType="text"
