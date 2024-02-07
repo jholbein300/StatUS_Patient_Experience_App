@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.status_patient_home"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"

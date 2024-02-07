@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Login_View::class.java)
             startActivity(intent)
         }
+
+        var sharedHistoryButton = findViewById<Button>(R.id.sharedHistoryButton)
+        sharedHistoryButton.setOnClickListener {
+            val intent = Intent(this, DoctorView::class.java)
+            startActivity(intent)
+        }
     }
 
 }
