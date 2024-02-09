@@ -37,8 +37,8 @@
         android:text="@string/home_button"
         android:textColor="#FFFFFF"
 
-        android:textColorHighlight="#F55866"
-        android:textColorLink="#F55866"
+        android:textColorHighlight="#C95D63"
+        android:textColorLink="#C95D63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.051"
         app:layout_constraintStart_toStartOf="parent"
