@@ -9,10 +9,10 @@ import java.sql.SQLException
 import kotlin.math.log
 
 class ConnectionClass {
-    private val ip = ""//DB IP address and port
-    private val dbName = "StatUs"
-    private val username = "username" //username from SQL Server
-    private val password = "password"//password from SQL Server
+    private val ip = "192.168.1.245:1433"//DB IP address and port
+    private val dbName = "StatUsDB"
+    private val username = "StatUs" //username from SQL Server
+    private val password = "@zur3sux"//password from SQL Server
 
     fun dbConnection() : Connection? {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()

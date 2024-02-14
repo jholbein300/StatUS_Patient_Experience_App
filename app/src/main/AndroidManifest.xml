@@ -22,7 +22,7 @@
             android:name=".PatientCareHistory"
             android:exported="false" />
         <activity
-            android:name=".Login_View"
+            android:name=".LoginView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
