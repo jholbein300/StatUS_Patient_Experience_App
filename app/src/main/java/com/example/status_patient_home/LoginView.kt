@@ -42,8 +42,29 @@ class LoginView : AppCompatActivity() {
 
         }
     }
-
 }
+
+/* Goes next to the OnCreate function
+ fun validateUser(v: View) {
+       val users = findViewById<TextView>(R.id.usernameLogin)
+       val pass = findViewById<TextView>(R.id.passwordLogin)
+
+       try{
+           val connectionHelper = ConnectionClass()
+           connect = connectionHelper.dbConnection()
+           if(connect != null){
+               val query = "Select * from user"
+
+           } else {
+
+           }
+       } catch (ex: Exception){
+           Log.e("Error", ex.message.toString())
+       }
+
+
+   }*/
+
 
 
 

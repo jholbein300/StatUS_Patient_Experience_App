@@ -9,7 +9,7 @@ import java.sql.SQLException
 import kotlin.math.log
 
 class ConnectionClass {
-    private val ip = "192.168.1.245:1433"//DB IP address and port
+    private val ip = "183.611.1.222:1433"//DB IP address and port
     private val dbName = "StatUsDB"
     private val username = "StatUs" //username from SQL Server
     private val password = "@zur3sux"//password from SQL Server
