@@ -6,7 +6,6 @@ import java.lang.Exception
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
-import kotlin.math.log
 
 class ConnectionClass {
     private val ip = "183.611.1.222:1433"//DB IP address and port
