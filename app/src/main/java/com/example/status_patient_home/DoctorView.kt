@@ -20,7 +20,7 @@ class DoctorView : AppCompatActivity() {
 
         val homeButton = findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, DoctorHomeView::class.java)
             startActivity(intent)
         }
 

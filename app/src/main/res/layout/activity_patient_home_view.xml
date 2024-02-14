@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#3A405A"
     android:backgroundTint="#3A405A"
-    tools:context=".MainActivity">
+    tools:context=".PatientHomeView">
 
     <Button
         android:id="@+id/careHistoryButton"

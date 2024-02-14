@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-
-//Patient Home View
-class MainActivity : AppCompatActivity() {
+class DoctorHomeView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_doctor_home_view)
 
-        val careHistoryButton = findViewById<Button>(R.id.careHistoryButton)
-        careHistoryButton.setOnClickListener {
-            val intent = Intent(this, PatientCareHistory::class.java)
+        val patientCareButton = findViewById<Button>(R.id.patientCareButton)
+        patientCareButton.setOnClickListener() {
+            val intent = Intent(this, DoctorView::class.java)
             startActivity(intent)
         }
 
@@ -23,7 +21,5 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginView::class.java)
             startActivity(intent)
         }
-
     }
-
 }

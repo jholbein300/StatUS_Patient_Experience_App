@@ -30,11 +30,11 @@ class LoginView : AppCompatActivity() {
             //Hard coded the login crendentials until connection to database is setup
             if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
                 //Patient credentials
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, PatientHomeView::class.java)
                 startActivity(intent)
             } else if(usernameEntered == "y.wasin@hospital.org" && passwordEntered == "pass123!@") {
                 //Login for the doctor
-                intent = Intent(this, DoctorView::class.java)
+                intent = Intent(this, DoctorHomeView::class.java)
                 startActivity(intent)
             } else {
                 Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()

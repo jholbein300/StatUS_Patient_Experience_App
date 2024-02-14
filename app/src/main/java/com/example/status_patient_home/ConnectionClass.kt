@@ -10,8 +10,8 @@ import java.sql.SQLException
 class ConnectionClass {
     private val ip = "183.611.1.222:1433"//DB IP address and port
     private val dbName = "StatUsDB"
-    private val username = "StatUs" //username from SQL Server
-    private val password = "@zur3sux"//password from SQL Server
+    private val username = "username" //username from SQL Server
+    private val password = "password"//password from SQL Server
 
     fun dbConnection() : Connection? {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
