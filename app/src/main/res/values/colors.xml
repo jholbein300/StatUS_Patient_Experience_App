@@ -8,6 +8,8 @@
     <color name="light_purple">#75D8BFF4</color>
 
     <color name="background_color">#3A405A</color>
-    <color name="buttons_color">#F45B69</color>
-    <color name="text_color">#AEC5EB</color>
+    <color name="dusty_rose">#A75471</color>
+    <color name="beige_main">#F3F0E3</color>
+    <color name="pale_blue">#AEC5EB</color>
+    <color name="deep_red">#820C08</color>
 </resources>

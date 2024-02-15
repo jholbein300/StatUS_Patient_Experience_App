@@ -8,12 +8,38 @@
     android:backgroundTint="#3A405A"
     tools:context=".PatientHomeView">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/dm_sans_medium"
+        android:outlineAmbientShadowColor="@color/black"
+        android:text="@string/welcome"
+        android:textColor="@color/pale_blue"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heartIcon" />
+
+    <ImageView
+        android:id="@+id/heartIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img" />
+
     <Button
         android:id="@+id/careHistoryButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
         android:layout_marginTop="330dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/dusty_rose"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/care_history"
@@ -25,32 +51,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:text="@string/welcome"
-        android:textColor="#AEC5EB"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/sharedHistoryButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
         android:layout_marginTop="430dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/dusty_rose"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/shared_history"
-        android:textColor="@android:color/white"
 
+        android:textColor="@android:color/white"
         android:textColorHighlight="#C95D63"
         android:textColorLink="#C95D63"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,11 +76,12 @@
         android:layout_height="60dip"
         android:layout_marginTop="530dp"
         android:background="@drawable/rounded_corner"
+        android:backgroundTint="@color/deep_red"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/logout"
-        android:textColor="@android:color/white"
 
+        android:textColor="@android:color/white"
         android:textColorHighlight="#C95D63"
         android:textColorLink="#C95D63"
         app:layout_constraintEnd_toEndOf="parent"
