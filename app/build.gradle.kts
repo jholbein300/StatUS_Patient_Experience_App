@@ -59,5 +59,15 @@ dependencies {
     implementation("com.microsoft.sqlserver:mssql-jdbc:12.6.0.jre11")
     implementation ("com.zaxxer:HikariCP:5.0.0")
 
+    // added because of SLF4J error
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation("org.slf4j:slf4j-api:2.1.0-alpha1")
+
+    // added because SlF4J-API did not fix the problem entirely
+    // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
+    implementation("org.slf4j:log4j-over-slf4j:2.1.0-alpha1")
+
+
+
 
 }

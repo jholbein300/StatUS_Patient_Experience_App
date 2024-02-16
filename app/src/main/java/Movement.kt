@@ -9,19 +9,12 @@ data class Movement(val movementId: Int, val uid: String, val roomId: String, va
 
 fun main(){
 
-    val dataSource = HikariDataSource()
+    val jdbcUrl =
+        "jdbc:sqlserver://statusdbserver.database.windows.net:1433;database=StatUsDB;user=StatUs@statusdbserver;password=@zur3sux;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
 
-    dataSource.jdbcUrl = "jdbc:sqlserver://statusdbserver.database.windows.net/StatUsDB"
+    val connection = DriverManager
+        .getConnection(jdbcUrl)
 
-    println(dataSource.maximumPoolSize)
-
-    // set the username
-    dataSource.username = "StatUs"
-
-    // set the password
-    dataSource.password = "@zur3sux"
-
-    val connection = dataSource.connection
     // returns true if connection was successfully made
     println(connection.isValid(0))
 
@@ -31,6 +24,7 @@ fun main(){
     // execute query and store in result
     val result = query.executeQuery()
 
+    // create a list of movements -> to be later used in timeline view
     val movementUID4 = mutableListOf<Movement>()
 
     while(result.next()){
@@ -41,10 +35,13 @@ fun main(){
         // getting the value of the name column
         val uid = result.getString("u_id")
 
+        // getting value of the room ID column
         val rid = result.getString("r_id")
 
+        // getting value of the timeEntered column
         val timeEnter = result.getString("time_entered")
 
+        // getting the value of the timeLeft column
         val timeLeft = result.getString("time_left")
 
         /*
