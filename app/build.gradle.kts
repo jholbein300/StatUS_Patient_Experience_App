@@ -63,7 +63,7 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
     implementation("org.slf4j:slf4j-api:2.1.0-alpha1")
 
-    // added because SlF4J-API did not fix the problem entirely
+    // added because SlF4J-API did not fix the problem entirely, I think this is the important one to keep
     // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
     implementation("org.slf4j:log4j-over-slf4j:2.1.0-alpha1")
 

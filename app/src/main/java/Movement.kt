@@ -9,6 +9,11 @@ data class Movement(val movementId: Int, val uid: String, val roomId: String, va
 
 fun main(){
 
+    // Create private data variables
+    var mid:Int;
+    var uid:String;
+
+    // URL from Azure JDBC Connection Strings
     val jdbcUrl =
         "jdbc:sqlserver://statusdbserver.database.windows.net:1433;database=StatUsDB;user=StatUs@statusdbserver;password=@zur3sux;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
 
@@ -19,7 +24,7 @@ fun main(){
     println(connection.isValid(0))
 
     // query to retrieve all movement ID's with user id of 4 (a.wood)
-    val query = connection.prepareStatement(" SELECT m.* FROM movement m WHERE m.u_id = 4;")
+    val query = connection.prepareStatement(" SELECT m.* FROM movement m WHERE m.r_id = 101;")
 
     // execute query and store in result
     val result = query.executeQuery()
@@ -30,10 +35,10 @@ fun main(){
     while(result.next()){
 
         // getting the value of the id column
-        val mid = result.getInt("movement_id")
+        mid = result.getInt("movement_id")
 
         // getting the value of the name column
-        val uid = result.getString("u_id")
+        uid = result.getString("u_id")
 
         // getting value of the room ID column
         val rid = result.getString("r_id")
@@ -48,8 +53,12 @@ fun main(){
         constructing a Movement object and
         putting data into the list
          */
-        movementUID4.add(Movement(mid, uid, rid, timeEnter, timeLeft))
+
+        val currentMovement = Movement(mid, uid, rid, timeEnter, timeLeft)
+
+        movementUID4.add(currentMovement)
+
+        println(Movement(mid, uid, rid, timeEnter, timeLeft))
     }
-    println(movementUID4)
 }
 
