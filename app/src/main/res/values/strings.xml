@@ -14,5 +14,6 @@
     <string name="username">Username</string>
     <string name="enter">Enter</string>
     <string name="welcome_doctor">Welcome [doctor name]</string>
-
+    <string name="disclaimer">Hello. This is a legally binding disclaimer, with some important words about how privacy will be handled. Please approve to use the app.</string>
+    <string name="agree">Agree</string>
 </resources>
