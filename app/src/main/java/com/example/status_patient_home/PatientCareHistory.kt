@@ -1,5 +1,7 @@
 package com.example.status_patient_home
 
+import DBGrabber
+import Movement
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,5 +23,6 @@ class PatientCareHistory : AppCompatActivity() {
             val intent = Intent(this, PatientHomeView::class.java)
             startActivity(intent)
         }
+        DBGrabber()
     }
 }
