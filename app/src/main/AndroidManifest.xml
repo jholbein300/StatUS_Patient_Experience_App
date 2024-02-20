@@ -13,6 +13,9 @@
         android:theme="@style/Theme.StatUS_Patient_Home"
         tools:targetApi="31">
         <activity
+            android:name=".LoginView"
+            android:exported="false" />
+        <activity
             android:name=".DoctorHomeView"
             android:exported="false" />
         <activity
@@ -25,7 +28,7 @@
             android:name=".PatientCareHistory"
             android:exported="false" />
         <activity
-            android:name=".LoginView"
+            android:name=".WarningPopup"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
