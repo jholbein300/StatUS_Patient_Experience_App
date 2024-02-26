@@ -2,6 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- added for BLE beacon connectivity -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
+    <!-- Below is only needed if you want to read the device name or establish a bluetooth connection
+    -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
+
+    <!-- Below is only needed if you want to emit beacon transmissions -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+
+    <!-- pubnub.com, android beacon tutorial recommendation -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"

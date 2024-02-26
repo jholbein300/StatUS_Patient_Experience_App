@@ -67,6 +67,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/log4j-over-slf4j
     implementation("org.slf4j:log4j-over-slf4j:2.1.0-alpha1")
 
+    // for the BLE hardware connectivity
+    implementation("org.altbeacon:android-beacon-library:2+")
 
 
 

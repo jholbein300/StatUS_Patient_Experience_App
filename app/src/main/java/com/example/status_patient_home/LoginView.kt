@@ -27,7 +27,7 @@ class LoginView : AppCompatActivity() {
             val usernameEntered = username.text.toString()
             val passwordEntered = password.text.toString()
 
-            //Hard coded the login crendentials until connection to database is setup
+            //Hard coded the login credentials until connection to database is setup
             if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
                 //Patient credentials
                 val intent = Intent(this, PatientHomeView::class.java)
