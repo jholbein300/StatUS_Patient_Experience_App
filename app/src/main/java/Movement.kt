@@ -1,7 +1,7 @@
-// https://levelup.gitconnected.com/how-to-access-database-with-kotlin-6b86f6680cd7
-// eliana
-
 import java.sql.DriverManager
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 // create a model class
 data class Movement(
@@ -9,22 +9,19 @@ data class Movement(
     val uid: String,
     val roomId: String,
     val timeEnter: String,
-    val timeLeft: String)
-{
-}
+    val timeLeft: String
+)
 
-
-fun DBGrabber(): Any {
-
+fun DBGrabber(callback: (List<Movement>) -> Unit) {
     // Create private data variables
-    val mid:Int;
-    val uid:String;
-    val rid:String;
-    val timeEnter:String;
-    val timeLeft:String;
+    val mid: Int
+    val uid: String
+    val rid: String
+    val timeEnter: String
+    val timeLeft: String
 
     // val because it is never changed; hard-coded for testing
-    val roomID:Int = 101
+    val roomID: Int = 101
 
     // URL from Azure JDBC Connection Strings
     val jdbcUrl =
@@ -37,52 +34,27 @@ fun DBGrabber(): Any {
                 "hostNameInCertificate=*.database.windows.net;" +
                 "loginTimeout=30;"
 
-    val connection = DriverManager.getConnection(jdbcUrl)
-
-    // returns true if connection was successfully made
-    println(connection.isValid(0))
-
-    // query to retrieve all movement ID's with user id of 4 (a.wood)
-    val query = connection.prepareStatement("SELECT m.* FROM movement m WHERE m.r_id = $roomID;")
-
-    // execute query and store in result
-    val result = query.executeQuery()
-
-    // create a list of movements -> to be later used in timeline view
-    val movementUID4 = mutableListOf<Movement>()
-
-    while(result.next()){
-
-        // getting the value of the id column
-        mid = result.getInt("movement_id")
-
-        // getting the value of the name column
-        uid = result.getString("u_id")
-
-        // getting value of the room ID column
-        rid = result.getString("r_id")
-
-        // getting value of the timeEntered column
-        timeEnter = result.getString("time_entered")
-
-        // getting the value of the timeLeft column
-        timeLeft = result.getString("time_left")
-
-        /*
-        constructing a Movement object and putting data into the list
-        */
-
-        val currentMovement = Movement(mid, uid, rid, timeEnter, timeLeft)
-
-        movementUID4.add(currentMovement)
-
-
-        println("$mid $uid $rid $timeEnter $timeLeft")
-        // or we do
-        // println(currentMovement)
-        return(currentMovement)
-
+    // Launch a coroutine in IO context to perform the database operation
+    GlobalScope.launch(Dispatchers.IO) {
+        val movements = mutableListOf<Movement>()
+        DriverManager.getConnection(jdbcUrl).use { connection ->
+            if (connection.isValid(0)) {
+                val query = connection.prepareStatement("SELECT m.* FROM movement m WHERE m.r_id = ?;")
+                query.setInt(1, roomID)
+                val result = query.executeQuery()
+                while (result.next()) {
+                    val movement = Movement(
+                        result.getInt("movement_id"),
+                        result.getString("u_id"),
+                        result.getString("r_id"),
+                        result.getString("time_entered"),
+                        result.getString("time_left")
+                    )
+                    movements.add(movement)
+                }
+            }
+        }
+        // Once the database operation is complete, invoke the callback with the list of movements
+        callback(movements)
     }
-    // return the list of objects -> to be iterated by XML Horizontal Layout View file
-    return(movementUID4)
 }

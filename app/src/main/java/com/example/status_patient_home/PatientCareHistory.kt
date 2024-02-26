@@ -23,6 +23,10 @@ class PatientCareHistory : AppCompatActivity() {
             val intent = Intent(this, PatientHomeView::class.java)
             startActivity(intent)
         }
-        DBGrabber()
-    }
+        DBGrabber { movements ->
+            // Do something with the list of movements returned asynchronously
+            movements.forEach { movement ->
+                println("${movement.movementId} ${movement.uid} ${movement.roomId} ${movement.timeEnter} ${movement.timeLeft}")
+            }
+        }    }
 }
