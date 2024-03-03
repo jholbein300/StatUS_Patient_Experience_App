@@ -4,7 +4,7 @@
 
     <!-- added for BLE beacon connectivity -->
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> -->
 
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
     <!-- Below is only needed if you want to read the device name or establish a bluetooth connection
@@ -14,8 +14,16 @@
     <!-- Below is only needed if you want to emit beacon transmissions -->
     <uses-permission android:name="android.permission.BLUETOOTH"/>
 
-    <!-- pubnub.com, android beacon tutorial recommendation -->
+    <!-- pubnub.com, android beacon tutorial recommendation for Bluetooth Device Discovery -->
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
+
+    <!-- so it can discover devices in the background without manually allowing/disallowing connections -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- so the app knows that Bluetooth and Bluetooth Low Energy are needed for the app-->
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
 
     <application
         android:allowBackup="true"

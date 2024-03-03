@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3A405A"
-    android:backgroundTint="#3A405A"
+    android:background="@color/background_color"
+    android:backgroundTint="@color/background_color"
     tools:context=".PatientHomeView">
 
     <TextView
@@ -16,7 +16,7 @@
         android:fontFamily="@font/dm_sans_medium"
         android:outlineAmbientShadowColor="@color/black"
         android:text="@string/welcome"
-        android:textColor="@color/pale_blue"
+        android:textColor="@color/denim"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/logo_v3" />
 
     <Button
         android:id="@+id/careHistoryButton"
@@ -39,11 +39,11 @@
         android:layout_height="60dip"
         android:layout_marginTop="330dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/dusty_rose"
+        android:backgroundTint="@color/coral"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/care_history"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textColorHighlight="#C95D63"
         android:textColorLink="#C95D63"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +57,7 @@
         android:layout_height="60dip"
         android:layout_marginTop="430dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/dusty_rose"
+        android:backgroundTint="@color/coral"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/shared_history"
@@ -76,7 +76,7 @@
         android:layout_height="60dip"
         android:layout_marginTop="530dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/deep_red"
+        android:backgroundTint="@color/denim"
         android:clickable="false"
         android:contextClickable="false"
         android:text="@string/logout"
@@ -88,5 +88,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/checkbtbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Check Bluetooth Status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

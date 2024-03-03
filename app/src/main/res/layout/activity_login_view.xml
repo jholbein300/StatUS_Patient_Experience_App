@@ -28,7 +28,7 @@
                 app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/LogoV3" />
+                app:srcCompat="@drawable/logo_v3" />
 
             <TextView
                 android:id="@+id/welcomeLog"

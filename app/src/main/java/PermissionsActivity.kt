@@ -25,6 +25,7 @@ open class PermissionsActivity: AppCompatActivity() {
         registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
+
             // Handle Permission granted/rejected
             permissions.entries.forEach {
                 val permissionName = it.key
