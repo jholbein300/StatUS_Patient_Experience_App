@@ -20,6 +20,7 @@
 
     <!-- so it can discover devices in the background without manually allowing/disallowing connections -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- so the app knows that Bluetooth and Bluetooth Low Energy are needed for the app-->
     <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
@@ -36,7 +37,7 @@
         android:theme="@style/Theme.StatUS_Patient_Home"
         tools:targetApi="31">
         <activity
-            android:name=".LoginView"
+            android:name=".WarningPopup"
             android:exported="false" />
         <activity
             android:name=".DoctorHomeView"
@@ -51,7 +52,7 @@
             android:name=".PatientCareHistory"
             android:exported="false" />
         <activity
-            android:name=".WarningPopup"
+            android:name=".LoginView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

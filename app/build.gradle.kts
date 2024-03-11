@@ -18,6 +18,9 @@ android {
     }
 
     buildTypes {
+        create("customDebugType") {
+            isDebuggable = true
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -49,6 +52,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.6.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("com.android.car.ui:car-ui-lib:2.6.0")
+    implementation("net.sourceforge.jtds:jtds:1.3.1")
     //Add in location of the jar file
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

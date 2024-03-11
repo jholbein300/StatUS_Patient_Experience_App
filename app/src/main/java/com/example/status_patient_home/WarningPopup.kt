@@ -1,5 +1,5 @@
 package com.example.status_patient_home
-
+//Possible defunct warning popup, replaced with the actual popup box plastered on top of the login screen
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
