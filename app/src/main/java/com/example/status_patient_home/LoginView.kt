@@ -52,7 +52,7 @@ class LoginView : AppCompatActivity() {
                 val editor = pref.edit()
                 editor.putBoolean("isLoggedIn", true)
                 editor.apply()
-                Toast.makeText(this, "LogIn completed", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Login completed", Toast.LENGTH_LONG).show()
                 startActivity(Intent(this, PatientHomeView::class.java))
                 finish()
             } else if(usernameEntered == "y.wasin@hospital.org" && passwordEntered == "pass123!@") {

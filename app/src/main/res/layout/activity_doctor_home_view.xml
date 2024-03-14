@@ -12,7 +12,7 @@
         android:id="@+id/patientCareButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
-        android:layout_marginTop="408dp"
+        android:layout_marginTop="332dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/coral"
         android:clickable="false"
@@ -56,7 +56,7 @@
         android:id="@+id/logoutButton"
         android:layout_width="250dip"
         android:layout_height="60dip"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="444dp"
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/denim"
         android:clickable="false"
@@ -68,8 +68,37 @@
         android:textColorHighlight="@color/background_color"
         android:textColorLink="@color/background_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/checkbtbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Check Bluetooth Status"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoutButton" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/material_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="616dp"
+            android:text="@string/allow_bluetooth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

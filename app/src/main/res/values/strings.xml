@@ -16,4 +16,6 @@
     <string name="welcome_doctor">Welcome [doctor name]</string>
     <string name="disclaimer">Hello. This is a legally binding disclaimer, with some important words about how privacy will be handled. Please approve to use the app.</string>
     <string name="agree">Agree</string>
+    <string name="allow_bluetooth">Allow Bluetooth</string>
+    <string name="status_company_logo_image">StatUS Company Logo Image</string>
 </resources>
