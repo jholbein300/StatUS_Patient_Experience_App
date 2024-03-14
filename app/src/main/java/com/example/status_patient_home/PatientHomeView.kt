@@ -15,10 +15,14 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -30,7 +34,7 @@ import androidx.core.app.ActivityCompat
 //Patient Home View
 class PatientHomeView : AppCompatActivity() {
 
-    // for ListView on homescreen for testing only
+    // for ListView on home-screen for testing only
     private lateinit var deviceListView: ListView
     private lateinit var deviceListAdapter: ArrayAdapter<String>
     private lateinit var bluetoothAdapter: BluetoothAdapter
@@ -67,6 +71,20 @@ class PatientHomeView : AppCompatActivity() {
         }
     }
 
+    // sample array for BLE table shown
+    val sampleData = arrayOf(
+        "BCPro_190653",
+        "BCPro_190652",
+        "Device 3",
+        "Device 4",
+        "Device 5"
+    )
+
+    private val currentRoomID = "Room 101"
+    val currentRoomTextView = findViewById<TextView>(R.id.currentRoomTextView)
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home_view)
@@ -78,12 +96,14 @@ class PatientHomeView : AppCompatActivity() {
         bluetoothAdapter = bluetoothManager.adapter
 
         // Initialize adapter for ListView
-        deviceListAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1)
+        deviceListAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, sampleData)
         deviceListView.adapter = deviceListAdapter
 
         // Check Bluetooth permissions and start scanning
         checkBluetoothPermissionsAndScan()
 
+        // testing with sample text variable
+        //currentRoomTextView.text = currentRoomID
 
         ////////////////////////
         // BUTTON CLICK LISTENERS
@@ -306,8 +326,11 @@ class PatientHomeView : AppCompatActivity() {
                         foundDevices.add(device)
                         // Print the found device to the terminal
                         println("Found Device: $deviceName - ${device.address}")
+                        currentRoomTextView.text = deviceName
                         // add found device to the adapter
                         deviceListAdapter.add("${device.name ?: "Unknown"} - ${device.address}")
+                        // notify the adapter that the data set has changed
+                        deviceListAdapter.notifyDataSetChanged()
                     }
                     // end of my code
                 }
@@ -316,3 +339,27 @@ class PatientHomeView : AppCompatActivity() {
     }
 }
 
+// Create a custom adapter class that extends BaseAdapter
+class DeviceListAdapter(private val context: Context, private val devices: ArrayList<String>) : BaseAdapter() {
+    override fun getCount(): Int {
+        return devices.size
+    }
+
+    override fun getItem(position: Int): Any {
+        return devices[position]
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.activity_patient_home_view, parent, false)
+
+        // Set the text of the TextView in your list item layout
+        val deviceNameTextView = view.findViewById<TextView>(R.id.deviceListView)
+        deviceNameTextView.text = devices[position]
+
+        return view
+    }
+}
