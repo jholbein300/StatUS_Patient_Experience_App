@@ -60,7 +60,8 @@ class PatientHomeView : AppCompatActivity() {
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.adapter
         if (bluetoothAdapter == null) {
-            Toast.makeText(this, "Your device does not support bluetooth.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Your device does not support bluetooth.",
+                Toast.LENGTH_LONG).show()
         } else {
             // request bluetooth permissions
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -89,7 +90,8 @@ class PatientHomeView : AppCompatActivity() {
                 btScan()
             }
         }else{
-            Toast.makeText(this, "Bluetooth permission denied", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Bluetooth permission denied",
+                Toast.LENGTH_SHORT).show()
             btPermission = false
         }
     }

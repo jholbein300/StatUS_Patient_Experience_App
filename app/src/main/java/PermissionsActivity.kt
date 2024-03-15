@@ -56,7 +56,8 @@ class PermissionsHelper(val context: Context) {
     // Manifest.permission.BLUETOOTH_CONNECT
     // Manifest.permission.BLUETOOTH_SCAN
     fun isPermissionGranted(permissionString: String): Boolean {
-        return (ContextCompat.checkSelfPermission(context, permissionString) == PackageManager.PERMISSION_GRANTED)
+        return (ContextCompat.checkSelfPermission(context, permissionString) ==
+                PackageManager.PERMISSION_GRANTED)
     }
     fun setFirstTimeAskingPermission(permissionString: String, isFirstTime: Boolean) {
         val sharedPreference = context.getSharedPreferences("org.altbeacon.permissions",
@@ -76,7 +77,8 @@ class PermissionsHelper(val context: Context) {
             true
         )
     }
-    fun beaconScanPermissionGroupsNeeded(backgroundAccessRequested: Boolean = false): List<Array<String>> {
+    fun beaconScanPermissionGroupsNeeded(backgroundAccessRequested: Boolean = false):
+            List<Array<String>> {
         val permissions = ArrayList<Array<String>>()
         // As of version M (6) we need FINE_LOCATION (or COARSE_LOCATION, but we ask for FINE)
         permissions.add(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
@@ -89,9 +91,11 @@ class PermissionsHelper(val context: Context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             // As of version S (12) we need FINE_LOCATION, BLUETOOTH_SCAN and BACKGROUND_LOCATION
             // Manifest.permission.BLUETOOTH_CONNECT is not absolutely required to do just scanning,
-            // but it is required if you want to access some info from the scans like the device name
-            // and the additional cost of requesting this access is minimal, so we just request it
-            permissions.add(arrayOf(Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT))
+            // scanning, but it is required if you want to access some info from the scans like the
+            // device name and the additional cost of requesting this access is minimal, so we just
+            // request it
+            permissions.add(arrayOf(Manifest.permission.BLUETOOTH_SCAN,
+                Manifest.permission.BLUETOOTH_CONNECT))
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             // As of version T (13) we POST_NOTIFICATIONS permissions if using a foreground service
@@ -121,13 +125,18 @@ open class BeaconScanPermissionsActivity: PermissionsActivity()  {
         layout.gravity = Gravity.CENTER
         layout.setBackgroundColor(Color.WHITE)
         layout.orientation = LinearLayout.VERTICAL
-        val backgroundAccessRequested = intent.getBooleanExtra("backgroundAccessRequested", true)
+        val backgroundAccessRequested = intent.getBooleanExtra(
+            "backgroundAccessRequested", true)
         val title = intent.getStringExtra("title") ?: "Permissions Needed"
-        val message = intent.getStringExtra("message") ?: "In order to scan for beacons, this app requrires the following permissions from the operating system.  Please tap each button to grant each required permission."
+        val message = intent.getStringExtra("message")
+            ?: ("In order to scan for beacons, this app requrires the following permissions from the " +
+                    "operating system.  Please tap each button to grant each required permission.")
         val continueButtonTitle = intent.getStringExtra("continueButtonTitle") ?: "Continue"
-        val permissionButtonTitles = intent.getBundleExtra("permissionBundleTitles") ?: getDefaultPermissionTitlesBundle()
+        val permissionButtonTitles = intent.getBundleExtra("permissionBundleTitles")
+            ?: getDefaultPermissionTitlesBundle()
 
-        permissionGroups = PermissionsHelper(this).beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
+        permissionGroups = PermissionsHelper(this)
+            .beaconScanPermissionGroupsNeeded(backgroundAccessRequested)
 
         val params = LinearLayout.LayoutParams(
             LinearLayout.LayoutParams.MATCH_PARENT,
