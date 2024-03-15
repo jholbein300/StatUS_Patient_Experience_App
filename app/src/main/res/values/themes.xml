@@ -10,11 +10,11 @@
     <!-- Base application theme. -->
     <style name="AlertDialogCustom" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
         <!-- Text color -->
-        <item name="android:textColor">@color/pale_blue</item>
+        <item name="android:textColor">@color/beige_main</item>
         <!-- Message box color -->
-        <item name="android:textColorPrimary">@color/pale_blue</item>
+        <item name="android:textColorPrimary">@color/beige_main</item>
         <!-- Background box color -->
-        <item name="android:background">@color/purple_200</item>
+        <item name="android:background">@color/darker_denim</item>
         <!-- Text size -->
         <item name="android:textSize">20sp</item>
     </style>

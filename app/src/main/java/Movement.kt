@@ -14,7 +14,7 @@ data class Movement(
 }
 
 
-fun DBGrabber(): Any {
+fun dBGrabber(): Any {
 
     // Create private data variables
     val mid:Int;

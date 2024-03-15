@@ -117,14 +117,15 @@
         android:id="@+id/timeline_view"
         android:layout_width="360dip"
         android:layout_height="300dip"
-        android:layout_marginTop="275dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/atomic_tangerine"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/enterBtn"
+        app:layout_constraintVertical_bias="0.211" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
