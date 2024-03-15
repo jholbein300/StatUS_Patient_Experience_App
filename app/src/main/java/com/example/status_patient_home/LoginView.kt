@@ -3,8 +3,6 @@ package com.example.status_patient_home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -62,7 +60,7 @@ class LoginView : AppCompatActivity() {
         }
 
         //Set click listener for login button
-        loginBtn.setOnClickListener(View.OnClickListener {
+        loginBtn.setOnClickListener {
 
                 val usernameEntered = username.text.toString()
                 val passwordEntered = password.text.toString()
@@ -90,7 +88,7 @@ class LoginView : AppCompatActivity() {
                 } else {
                     Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()
                 }
-        })
+        }
 
 
             //Emily: Ignore this code

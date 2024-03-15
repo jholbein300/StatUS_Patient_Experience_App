@@ -17,11 +17,11 @@ data class Movement(
 fun dBGrabber(): Any {
 
     // Create private data variables
-    val mid:Int;
-    val uid:String;
-    val rid:String;
-    val timeEnter:String;
-    val timeLeft:String;
+    val mid:Int
+    val uid:String
+    val rid:String
+    val timeEnter:String
+    val timeLeft:String
 
     // val because it is never changed; hard-coded for testing
     val roomID:Int = 101
