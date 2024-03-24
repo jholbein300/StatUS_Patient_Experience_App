@@ -326,13 +326,13 @@ class PatientHomeView : AppCompatActivity() {
                         foundDevices.add(device)
                         // Print the found device to the terminal
                         println("Found Device: $deviceName - ${device.address}")
-                        currentRoomTextView.text = deviceName
+
+                        // currentRoomTextView.text = deviceName
                         // add found device to the adapter
                         deviceListAdapter.add("${device.name ?: "Unknown"} - ${device.address}")
                         // notify the adapter that the data set has changed
                         deviceListAdapter.notifyDataSetChanged()
                     }
-                    // end of my code
                 }
             }
         }
