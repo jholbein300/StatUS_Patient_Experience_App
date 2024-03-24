@@ -29,7 +29,7 @@ class PatientCareHistory : AppCompatActivity() {
             val editor = pref.edit()
             editor.putBoolean("isLoggedIn", false)
             editor.apply()
-            Toast.makeText(this, "LogOut completed", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Logout completed", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LoginView::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)

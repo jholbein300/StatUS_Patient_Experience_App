@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,17 @@ class PatientHomeView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home_view)
+
+        // Eliana
+
+        // username for greeting later make this a DB retrieval
+        val userFName = "John";
+
+        // Retrieve the textview
+        val greetingTextView: TextView = findViewById(R.id.greetingTextView);
+
+        // set the text of the TextView
+        greetingTextView.text = "Hello $userFName!"
 
         // button click listeners
 
