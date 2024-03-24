@@ -5,12 +5,24 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 
 class DoctorHomeView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_home_view)
+
+        // Eliana
+
+        // username for greeting later make this a DB retrieval
+        val userFName = "Yasmin";
+
+        // Retrieve the textview
+        val greetingTextView: TextView = findViewById(R.id.greetingTextView);
+
+        // set the text of the TextView
+        greetingTextView.text = "Hello $userFName!"
 
         val patientCareButton = findViewById<Button>(R.id.patientCareButton)
         patientCareButton.setOnClickListener() {

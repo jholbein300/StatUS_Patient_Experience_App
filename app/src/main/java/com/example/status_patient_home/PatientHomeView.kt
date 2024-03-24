@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,17 @@ class PatientHomeView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home_view)
+
+        // Eliana
+
+        // username for greeting later make this a DB retrieval
+        val userFName = "John";
+
+        // Retrieve the textview
+        val greetingTextView: TextView = findViewById(R.id.greetingTextView);
+
+        // set the text of the TextView
+        greetingTextView.text = "Hello $userFName!"
 
         // button click listeners
 
@@ -60,7 +72,8 @@ class PatientHomeView : AppCompatActivity() {
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.adapter
         if (bluetoothAdapter == null) {
-            Toast.makeText(this, "Your device does not support bluetooth.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Your device does not support bluetooth.",
+                Toast.LENGTH_LONG).show()
         } else {
             // request bluetooth permissions
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -89,7 +102,8 @@ class PatientHomeView : AppCompatActivity() {
                 btScan()
             }
         }else{
-            Toast.makeText(this, "Bluetooth permission denied", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Bluetooth permission denied",
+                Toast.LENGTH_SHORT).show()
             btPermission = false
         }
     }
