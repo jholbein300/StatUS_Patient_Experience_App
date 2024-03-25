@@ -1,10 +1,12 @@
 package com.example.status_patient_home
 
+// for using the main thread for UI updates
+
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
-import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -13,11 +15,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 
 //Patient Home View
 class PatientHomeView : AppCompatActivity() {
+
+    private fun updateTextViewOnUiThread(username : String) {
+        runOnUiThread() {
+            val greetingTextView: TextView = findViewById(R.id.greetingTextView)
+            greetingTextView.text = "Welcome $username!"
+        }
+    }
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home_view)
@@ -25,12 +37,31 @@ class PatientHomeView : AppCompatActivity() {
         // Eliana
 
         // username for greeting later make this a DB retrieval
-        val userFName = "John";
+        //val userFName = "John";
+        //lifecycleScope.launch {
+        //    // this will run in the background 'thread' and be brought to the main thread
+        //    val username = withContext(Dispatchers.IO) {
+        //        val instance = ConnectDBmain.create() ?: throw IllegalStateException("ConnectDBmain.create() returned null")
+        //        instance.getNameAsync(1).toString()
+        //    }
 
-        // Retrieve the textview
-        val greetingTextView: TextView = findViewById(R.id.greetingTextView);
 
-        // set the text of the TextView
+            //val instance = ConnectDBmain.create()
+            //val username = instance.getNameAsync(1)
+
+            // Retrieve the textview
+            //val greetingTextView: TextView = findViewById(R.id.greetingTextView);
+
+            // set the text of the TextView
+            //greetingTextView.text = "Hello $username!"
+
+            //updateTextViewOnUiThread(username)
+        //}
+
+
+        // temp working TextView writer using manual username
+        val userFName = "John"
+        val greetingTextView : TextView = findViewById(R.id.greetingTextView);
         greetingTextView.text = "Hello $userFName!"
 
         // button click listeners
@@ -46,7 +77,7 @@ class PatientHomeView : AppCompatActivity() {
         val logoutButton = findViewById<Button>(R.id.logoutButton)
         logoutButton.setOnClickListener {
             //Disables auto login
-            val pref = getSharedPreferences("login", Context.MODE_PRIVATE)
+            val pref = getSharedPreferences("login", MODE_PRIVATE)
             val editor = pref.edit()
             editor.putBoolean("isLoggedIn", false)
             editor.apply()
@@ -63,12 +94,30 @@ class PatientHomeView : AppCompatActivity() {
             // Call function to check Bluetooth
             scanBT(it) // Passing the view that was clicked
         }
+
+
+        val requestCode = 1
+        // create instance of the class
+        val bluetoothScan = BluetoothScan(this)
+        // before starting the Bluetooth scanning operation
+        val permission = Manifest.permission.BLUETOOTH_SCAN
+
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted, request it
+            ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+        } else {
+            // Permission has already been granted, proceed with Bluetooth scanning
+            // Start Bluetooth scanning operation
+            bluetoothScan.scanLeDevice()
+        }
+        //call the scanLeDevice method
+        bluetoothScan.scanLeDevice()
     }
 
     //eliana 03/02
     private var btPermission = false
 
-    fun scanBT(view: View) {
+    private fun scanBT(view: View) {
         val bluetoothManager: BluetoothManager = getSystemService(BluetoothManager::class.java)
         val bluetoothAdapter: BluetoothAdapter? = bluetoothManager.adapter
         if (bluetoothAdapter == null) {
@@ -77,7 +126,7 @@ class PatientHomeView : AppCompatActivity() {
         } else {
             // request bluetooth permissions
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                bluetoothPermissionLauncher.launch(android.Manifest.permission.BLUETOOTH_CONNECT)
+                bluetoothPermissionLauncher.launch(Manifest.permission.BLUETOOTH_CONNECT)
             } else {
                 bluetoothPermissionLauncher.launch(Manifest.permission.BLUETOOTH_ADMIN)
             }

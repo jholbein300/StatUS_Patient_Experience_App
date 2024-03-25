@@ -2,7 +2,6 @@
 // eliana
 
 import java.sql.DriverManager
-
 // create a model class
 data class Movement(
     val movementId: Int,
@@ -19,6 +18,7 @@ fun dBGrabber(): Any {
     // Create private data variables
     val mid:Int
     val uid:String
+
     val rid:String
     val timeEnter:String
     val timeLeft:String
