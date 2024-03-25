@@ -32,6 +32,7 @@ class DoctorHomeView : AppCompatActivity() {
 
         val logoutButton = findViewById<Button>(R.id.logoutButton)
         logoutButton.setOnClickListener {
+            //Sets auto login to false and directs the user back to login screen
             val pref = getSharedPreferences("login", Context.MODE_PRIVATE)
             val editor = pref.edit()
             editor.putBoolean("isLoggedIn", false)

@@ -89,10 +89,8 @@
         android:background="@drawable/rounded_corner"
         android:backgroundTint="@color/silver_lake_blue"
         android:text="@string/enter"
-
         android:textColor="@android:color/white"
         android:textColorHighlight="#C95D63"
-
         android:textColorLink="#C95D63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -100,6 +98,7 @@
         app:layout_constraintTop_toBottomOf="@id/patientSpinner" />
 
     <android.widget.SearchView
+        android:id="@+id/patientSearch"
         android:layout_width="360dip"
         android:layout_height="48dip"
         android:layout_marginTop="20dp"

@@ -1,20 +1,29 @@
 package com.example.status_patient_home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import android.widget.SearchView
 
 class DoctorView : AppCompatActivity() {
     private lateinit var patientRecyclerView: RecyclerView
     private lateinit var careArrayList: ArrayList<CareHistoryData>
+    //private lateinit var heading : Array<String>
+    //private lateinit var date : Array<String>
+    //private lateinit var description : Array<String>
+    private lateinit var spinner: Spinner
+    private lateinit var searchView: SearchView
+    private lateinit var items: Array<String>
     lateinit var headingSmith : Array<String>
     lateinit var dateSmith : Array<String>
     lateinit var descriptionSmith : Array<String>
@@ -22,8 +31,10 @@ class DoctorView : AppCompatActivity() {
     lateinit var dateYoung : Array<String>
     lateinit var descriptionYoung : Array<String>
     private var selectedPatientName: String = ""
+    private lateinit var adapter: ArrayAdapter<String>
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_doctor_view)
@@ -80,10 +91,33 @@ class DoctorView : AppCompatActivity() {
             }
         }
 
+        searchView = findViewById(R.id.patientSearch)
+
+        //access the array resouce
+        items = resources.getStringArray(R.array.patientName_array)
+
+        //Array adapter
+        adapter = ArrayAdapter(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items)
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+
+        //Setting up the search functionality
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterItems(newText.orEmpty())
+                return true
+            }
+        })
+
         val enterButton = findViewById<Button>(R.id.enterBtn)
         enterButton.setOnClickListener {
             updateRecyclerViewForPatient(selectedPatientName);
         }
+
+        //Access the array resource
 
 
         headingSmith = arrayOf(
@@ -147,8 +181,7 @@ class DoctorView : AppCompatActivity() {
         )
 
 
-
-
+        //Connects the timeline
         patientRecyclerView = findViewById(R.id.timeline_view)
         patientRecyclerView.layoutManager = LinearLayoutManager(this)
         patientRecyclerView.setHasFixedSize(true)
@@ -170,5 +203,11 @@ class DoctorView : AppCompatActivity() {
         }
 
         patientRecyclerView.adapter = TimelineAdapter(careArrayList)
+    }
+    private fun filterItems(query: String) {
+        val filterItem = items.filter { it.contains(query, ignoreCase = true) }
+        adapter.clear()
+        adapter.addAll(filterItem)
+        adapter.notifyDataSetChanged()
     }
 }

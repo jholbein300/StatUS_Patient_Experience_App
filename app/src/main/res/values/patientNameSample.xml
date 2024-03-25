@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="patientName_array">
-        <item>T. Smith</item>
-        <item>A. Young</item>
+        <item id="1">T. Smith</item>
+        <item id="2">A. Young</item>
+        <item id="3">T. Patterson</item>
     </string-array>
 </resources>

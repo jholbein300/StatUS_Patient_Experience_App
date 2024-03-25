@@ -62,32 +62,32 @@ class LoginView : AppCompatActivity() {
         //Set click listener for login button
         loginBtn.setOnClickListener {
 
-                val usernameEntered = username.text.toString()
-                val passwordEntered = password.text.toString()
+            val usernameEntered = username.text.toString()
+            val passwordEntered = password.text.toString()
 
-                //Hardcoded login
-                if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
-                    //Auto login feature for the patient
-                    val editor = pref.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.putString("role", "2")
-                    editor.apply()
-                    Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, PatientHomeView::class.java))
-                    finish()
-                } else if(usernameEntered == "y.wasin@hospital.org" && passwordEntered == "pass123!@") {
-                    //Doctor successful logged in
-                    //Keeps the Doctor Logged in
-                    val editor = pref.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.putString("role", "1")
-                    editor.apply()
-                    Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
-                    intent = Intent(this, DoctorHomeView::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()
-                }
+            //Hardcoded login
+            if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
+                //Auto login feature for the patient
+                val editor = pref.edit()
+                editor.putBoolean("isLoggedIn", true)
+                editor.putString("role", "2")
+                editor.apply()
+                Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this, PatientHomeView::class.java))
+                finish()
+            } else if(usernameEntered == "y.wasin@hospital.org" && passwordEntered == "pass123!@") {
+                //Doctor successful logged in
+                //Keeps the Doctor Logged in
+                val editor = pref.edit()
+                editor.putBoolean("isLoggedIn", true)
+                editor.putString("role", "1")
+                editor.apply()
+                Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
+                intent = Intent(this, DoctorHomeView::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+            }
         }
 
 
@@ -199,6 +199,7 @@ class LoginView : AppCompatActivity() {
 }
 
 
+
 /* Goes next to the OnCreate function
  fun validateUser(v: View) {
        val users = findViewById<TextView>(R.id.usernameLogin)
@@ -217,7 +218,9 @@ class LoginView : AppCompatActivity() {
            Log.e("Error", ex.message.toString())
        }
 
-
+jdbc:jtds://statusdbserver.database.windows.net:1433;database=StatUsDB;user=StatUs@statusdbserver;
+password={your_password_here};
+encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
    }*/
 
 

@@ -46,11 +46,18 @@ class ConnectionClass {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
             var conn: Connection? = null
-            var conString: String? = null
+            var conString: String
             try {
                 Class.forName("net.sourceforge.jtds.jdbc.Driver")
                 conString =
-                    "jdbc:jtds:sqlserver://$ip;databaseName=$dbName;username=$username;password=$password;"
+                    "jdbc:sqlserver://statusdbserver.database.windows.net:1433;" +
+                            "database=StatUsDB;" +
+                            "user=StatUs@statusdbserver;" +
+                            "password=@zur3sux;" +
+                            "encrypt=true;" +
+                            "trustServerCertificate=false;" +
+                            "hostNameInCertificate=*.database.windows.net;" +
+                            "loginTimeout=30;"
                 conn = DriverManager.getConnection(conString)
             } catch (ex: SQLException) {
                 Log.e("Error : ", ex.message.toString())

@@ -28,7 +28,7 @@ fun dBGrabber(): Any {
 
     // URL from Azure JDBC Connection Strings
     val jdbcUrl =
-        "jdbc:sqlserver://statusdbserver.database.windows.net:1433;" +
+        "jdbc:jtds://statusdbserver.database.windows.net:1433;" +
                 "database=StatUsDB;" +
                 "user=StatUs@statusdbserver;" +
                 "password=@zur3sux;" +
@@ -39,8 +39,6 @@ fun dBGrabber(): Any {
 
     val connection = DriverManager.getConnection(jdbcUrl)
 
-    // returns true if connection was successfully made
-    println(connection.isValid(0))
 
     // query to retrieve all movement ID's with user id of 4 (a.wood)
     val query = connection.prepareStatement("SELECT m.* FROM movement m WHERE m.r_id = $roomID;")
@@ -77,7 +75,6 @@ fun dBGrabber(): Any {
         movementUID4.add(currentMovement)
 
 
-        println("$mid $uid $rid $timeEnter $timeLeft")
         // or we do
         // println(currentMovement)
         return(currentMovement)
