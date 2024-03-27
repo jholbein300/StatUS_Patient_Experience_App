@@ -3,22 +3,20 @@ package com.example.status_patient_home
 import android.os.StrictMode
 import android.util.Log
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.SQLException
 
-data class User (
+data class User(
     val id: Int,
     val roleName: String,
+    val userType: String,
     val emailAddress: String,
-    val userType: String
+    val firstName: String,
+    val lastName: String
 
 )
-
 
 
 @OptIn(DelicateCoroutinesApi::class)
@@ -63,30 +61,33 @@ class ConnectionClass {
             return conn
         }
 
-        // Login and retrieve user data
-        fun tempLogin(email: String, password: String, callback: (User?) -> Unit) {
+        // Login and retrieve user data using stored procedure
+        fun tempLogin(email: String, password: String): User? {
             var user: User? = null
-            // It may be more secure to set parameters using query.setString(...)
-            val procString = "EXECUTE dbo.login '$email', '$password';"
-
-            GlobalScope.launch(Dispatchers.IO) {
+            try {
                 DriverManager.getConnection(jdbcUrl).use { connection ->
                     if (connection.isValid(0)) {
-                        val query = connection.prepareStatement(procString)
+                        val query = connection.prepareStatement("EXECUTE dbo.login ?, ?;")
+                        query.setString(1, email)
+                        query.setString(2, password)
                         val result = query.executeQuery()
+
                         if (result.next()) {
                             user = User(
                                 result.getInt("user_id"),
                                 result.getString("role_name"),
+                                result.getString("ut_id"),
                                 result.getString("email"),
-                                result.getString("ut_id")
+                                result.getString("first_name"),
+                                result.getString("last_name")
                             )
                         }
                     }
                 }
+            } catch (e: Exception) {
+                throw e
             }
-            // Returns null if DB connection or user authentication fails.
-            callback(user)
+            return user
         }
     }
 }

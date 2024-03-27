@@ -64,6 +64,7 @@ class LoginView : AppCompatActivity() {
 
                 val usernameEntered = username.text.toString()
                 val passwordEntered = password.text.toString()
+                //val user = ConnectionClass.tempLogin(usernameEntered, passwordEntered)
 
                 //Hardcoded login
                 if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
@@ -196,6 +197,7 @@ class LoginView : AppCompatActivity() {
 
 
     }
+
 }
 
 
