@@ -33,12 +33,15 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
     buildFeatures {
         viewBinding = true
     }
+
+
 }
 
 dependencies {
@@ -53,6 +56,9 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.6.0")
     implementation("com.android.car.ui:car-ui-lib:2.6.0")
     implementation("net.sourceforge.jtds:jtds:1.3.1")
+    //Jake
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
     //Add in location of the jar file
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -60,8 +66,8 @@ dependencies {
 
     // eliana
     // https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc
-    implementation("com.microsoft.sqlserver:mssql-jdbc:12.6.0.jre11")
-    implementation ("com.zaxxer:HikariCP:5.0.0")
+    implementation("com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11")
+    implementation ("com.zaxxer:HikariCP:5.1.0")
 
     // added because of SLF4J error
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
@@ -77,3 +83,4 @@ dependencies {
 
 
 }
+

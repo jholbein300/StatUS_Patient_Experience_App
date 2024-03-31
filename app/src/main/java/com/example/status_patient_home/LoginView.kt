@@ -1,6 +1,5 @@
 package com.example.status_patient_home
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,8 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-
-import java.sql.ResultSet
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginView : AppCompatActivity() {
     //private var connect: Connection? = null
@@ -31,13 +32,13 @@ class LoginView : AppCompatActivity() {
         loginBtn = findViewById<Button>(R.id.loginBtn)
 
        //Creating the alert dialog for disclaimer
-        val altDialogBuiler = AlertDialog.Builder(this@LoginView, R.style.AlertDialogCustom)
+        val alertDialogBuilder = AlertDialog.Builder(this@LoginView, R.style.AlertDialogCustom)
 
-        altDialogBuiler.setMessage("Hello. This is a legally binding disclaimer, with some important words about how privacy will be handled. Please approve to use the app.")
-        altDialogBuiler.setPositiveButton("Agree"){_,_ ->
+        alertDialogBuilder.setMessage("Hello. This is a legally binding disclaimer, with some important words about how privacy will be handled. Please approve to use the app.")
+        alertDialogBuilder.setPositiveButton("Agree"){ _, _ ->
         }
 
-        val alertBox: AlertDialog = altDialogBuiler.create()
+        val alertBox: AlertDialog = alertDialogBuilder.create()
         alertBox.show()
 
         //Set click listener for login button
@@ -52,40 +53,28 @@ class LoginView : AppCompatActivity() {
         }
     }
     private fun validateUser(username: String, password: String) {
-        val connectionHelper = ConnectionClass()
-        val connect = connectionHelper.dbConnection()
-        if (connect != null) {
-            try {
-                val query = "SELECT * FROM dbo.users WHERE email = ? AND password = ?"
-                val stmt = connect.prepareStatement(query)
-                stmt.setString(1, username)
-                stmt.setString(2, password)
-                val resultSet: ResultSet = stmt.executeQuery()
-                if (resultSet.next()) {
-                    // Credentials are correct
-                    navigateToHomeView()
-                } else {
-                    // Credentials are incorrect
-                    runOnUiThread {
-                        Toast.makeText(
-                            this@LoginView,
-                            "Incorrect username or password",
-                            Toast.LENGTH_SHORT
-                        ).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            val connectionResult = try {
+                val connect = ConnectionClass().dbConnection()
+                connect?.use { conn ->  // Automatically close the connection when done
+                    val query = "SELECT * FROM dbo.users WHERE email = ? AND password = ?"
+                    conn.prepareStatement(query).use { stmt ->  // Automatically close the PreparedStatement when done
+                        stmt.setString(1, username)
+                        stmt.setString(2, password)
+                        val resultSet = stmt.executeQuery()
+                        if (resultSet.next()) "success" else "fail"
                     }
-                }
+                } ?: "error"
             } catch (e: Exception) {
-                runOnUiThread {
-                    Toast.makeText(this@LoginView, "Login error: ${e.message}", Toast.LENGTH_LONG)
-                        .show()
-                }
-            } finally {
-                connect.close()
+                e.message ?: "error"
             }
-        } else {
-            runOnUiThread {
-                Toast.makeText(this@LoginView, "Unable to connect to database", Toast.LENGTH_SHORT)
-                    .show()
+
+            withContext(Dispatchers.Main) {
+                when (connectionResult) {
+                    "success" -> navigateToHomeView()
+                    "fail" -> Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+                    else -> Toast.makeText(this@LoginView, "Login error: $connectionResult", Toast.LENGTH_LONG).show()
+                }
             }
         }
     }
