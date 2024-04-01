@@ -3,25 +3,28 @@ package com.example.status_patient_home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.postDelayed
 
 
 class LoginView : AppCompatActivity() {
     //private var connect: Connection? = null
     //private var connectResult = ""
+
     //Create private variables that are non-nullable and are initialized later
     private lateinit var username: EditText
     private lateinit var password: EditText
     private lateinit var loginBtn: Button
     val role = "1"
+
     //Initialize UserData class to access the user data
     //private val userData = UserData()
+
+    // variable to check if the activity is closing soon
+    private var isFinishing = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +43,9 @@ class LoginView : AppCompatActivity() {
         }
 
         val alertBox: AlertDialog = altDialogBuiler.create()
-        alertBox.show()
+        if (!isFinishing) {
+            alertBox.show()
+        }
 
         //Using sharedPreference to check user is already logged in
         val pref = getSharedPreferences("login", Context.MODE_PRIVATE)
@@ -198,6 +203,12 @@ class LoginView : AppCompatActivity() {
 
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        // set flag to true when the activity is finishing
+        isFinishing = true
+    }
+
 }
 
 
@@ -218,8 +229,6 @@ class LoginView : AppCompatActivity() {
        } catch (ex: Exception){
            Log.e("Error", ex.message.toString())
        }
-
-
    }*/
 
 

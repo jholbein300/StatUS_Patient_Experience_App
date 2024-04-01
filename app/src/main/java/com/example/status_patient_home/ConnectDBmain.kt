@@ -14,7 +14,8 @@ class ConnectDBmain {
                     "encrypt=true;" +
                     "trustServerCertificate=false;" +
                     "hostNameInCertificate=*.database.windows.net;" +
-                    "loginTimeout=30;"
+                    "loginTimeout=30;" +
+                    "sslProtocol=TLSv1.2;"
 
         private val connection: Connection? = DriverManager.getConnection(jdbcUrl)
 

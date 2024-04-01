@@ -2,6 +2,9 @@ package com.example.status_patient_home
 
 // for using the main thread for UI updates
 
+// import coroutines for background threads
+
+// import InternetPermission class
 import android.Manifest
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
@@ -19,33 +22,32 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 //Patient Home View
-class PatientHomeView : AppCompatActivity() {
+class PatientHomeView : AppCompatActivity(), InternetPermissionCallback {
 
-    private fun updateTextViewOnUiThread(username : String) {
-        runOnUiThread() {
-            val greetingTextView: TextView = findViewById(R.id.greetingTextView)
-            greetingTextView.text = "Welcome $username!"
-        }
-    }
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_patient_home_view)
 
-        // Eliana
+        val internetPermission = InternetPermission()
+        internetPermission.checkInternetPermissionAndExecute(this, this)
 
         // username for greeting later make this a DB retrieval
         //val userFName = "John";
-        //lifecycleScope.launch {
-        //    // this will run in the background 'thread' and be brought to the main thread
-        //    val username = withContext(Dispatchers.IO) {
-        //        val instance = ConnectDBmain.create() ?: throw IllegalStateException("ConnectDBmain.create() returned null")
-        //        instance.getNameAsync(1).toString()
-        //    }
+        lifecycleScope.launch {
+            // this will run in the background 'thread' and be brought to the main thread
+            val username = withContext(Dispatchers.IO) {
+                val instance = ConnectDBmain.create() ?: throw IllegalStateException("ConnectDBmain.create() returned null")
+                instance.getNameAsync(1).toString()
+            }
 
-
+            // network on main thread exception - do not use, even for testing
             //val instance = ConnectDBmain.create()
             //val username = instance.getNameAsync(1)
 
@@ -55,14 +57,14 @@ class PatientHomeView : AppCompatActivity() {
             // set the text of the TextView
             //greetingTextView.text = "Hello $username!"
 
-            //updateTextViewOnUiThread(username)
-        //}
+            updateTextViewOnUiThread(username)
+        }
 
 
         // temp working TextView writer using manual username
-        val userFName = "John"
-        val greetingTextView : TextView = findViewById(R.id.greetingTextView);
-        greetingTextView.text = "Hello $userFName!"
+        //val userFName = "John"
+        //val greetingTextView : TextView = findViewById(R.id.greetingTextView);
+        //greetingTextView.text = "Hello $userFName!"
 
         // button click listeners
 
@@ -81,7 +83,7 @@ class PatientHomeView : AppCompatActivity() {
             val editor = pref.edit()
             editor.putBoolean("isLoggedIn", false)
             editor.apply()
-            Toast.makeText(this, "LogOut completed", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Logout completed", Toast.LENGTH_LONG).show()
             val intent = Intent(this, LoginView::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
@@ -171,4 +173,42 @@ class PatientHomeView : AppCompatActivity() {
         Toast.makeText(this, "Bluetooth Connected Successfully", Toast.LENGTH_LONG).show()
     }
 
+    private val internetPermission = InternetPermission()
+
+    override fun onPermissionGranted() {
+        // Permission granted, execute network operation or other tasks
+        performNetworkOperation()
+    }
+
+    override fun onPermissionDenied() {
+        // Permission denied, show toast message or handle accordingly
+        Toast.makeText(
+            this,
+            "Internet permission denied. Cannot perform network operation.",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun updateTextViewOnUiThread(username : String) {
+        // create instance of the InternetPermission class
+        runOnUiThread() {
+            // passing context 'this' into the function so it can access Internet permissions
+            // through this activity
+            val greetingTextView: TextView = findViewById(R.id.greetingTextView)
+            greetingTextView.text = "Welcome $username!"
+        }
+    }
+
+
+    override fun updateTextView (username : String) {
+        updateTextViewOnUiThread(username)
+    }
+    private fun checkInternetPermission() {
+        internetPermission.checkInternetPermissionAndExecute(this, this)
+    }
+    private fun performNetworkOperation() {
+        // Network operation code goes here
+        // For example, call the function to update text view on UI thread
+        updateTextView("John")
+    }
 }
