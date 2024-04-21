@@ -40,6 +40,9 @@ android {
 
 dependencies {
 
+    implementation( files("libs/jtds-1.3.1.jar"))
+
+
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -69,6 +72,8 @@ dependencies {
 
     // for the BLE hardware connectivity
     implementation("org.altbeacon:android-beacon-library:2+")
+
+
 
 
 

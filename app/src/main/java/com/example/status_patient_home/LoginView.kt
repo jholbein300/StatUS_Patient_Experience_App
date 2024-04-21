@@ -3,6 +3,7 @@ package com.example.status_patient_home
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -10,6 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
+import com.example.status_patient_home.ConnectionClass
+import com.example.status_patient_home.ConnectionClass.Companion.login
+import com.example.status_patient_home.ConnectionClass.Companion.tempLogin
+import kotlinx.coroutines.*
 
 
 class LoginView : AppCompatActivity() {
@@ -60,35 +65,30 @@ class LoginView : AppCompatActivity() {
         }
 
         //Set click listener for login button
-        loginBtn.setOnClickListener {
+        loginBtn.setOnClickListener { //Calling my login function, with error checking on failure ideally
 
-                val usernameEntered = username.text.toString()
-                val passwordEntered = password.text.toString()
+            val email = username.text.toString()
+                val password = password.text.toString()
                 //val user = ConnectionClass.tempLogin(usernameEntered, passwordEntered)
 
-                //Hardcoded login
-                if(usernameEntered == "j.kinsley@gmail.com" && passwordEntered == "securepwd") {
-                    //Auto login feature for the patient
-                    val editor = pref.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.putString("role", "2")
-                    editor.apply()
-                    Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, PatientHomeView::class.java))
-                    finish()
-                } else if(usernameEntered == "y.wasin@hospital.org" && passwordEntered == "pass123!@") {
-                    //Doctor successful logged in
-                    //Keeps the Doctor Logged in
-                    val editor = pref.edit()
-                    editor.putBoolean("isLoggedIn", true)
-                    editor.putString("role", "1")
-                    editor.apply()
-                    Toast.makeText(this, "Successfully Logged In", Toast.LENGTH_LONG).show()
-                    intent = Intent(this, DoctorHomeView::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@LoginView, "Incorrect username or password", Toast.LENGTH_SHORT).show()
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val user = login(email, password)
+                    withContext(Dispatchers.Main) {
+                        if (user != null) {
+                            Log.i("LoginSuccess", "User logged in: $user")
+
+                        } else {
+                            Toast.makeText(this@LoginView, "Login failed. Please check your credentials.", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@LoginView, "Error logging in: ${e.message}", Toast.LENGTH_LONG).show()
+                        Log.e("LoginError", "Exception during login", e)
+                    }
                 }
+            }
         }
 
 

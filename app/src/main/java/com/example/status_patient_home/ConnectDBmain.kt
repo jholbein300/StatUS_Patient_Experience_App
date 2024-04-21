@@ -16,7 +16,7 @@ class ConnectDBmain {
                     "hostNameInCertificate=*.database.windows.net;" +
                     "loginTimeout=30;"
 
-        private val connection: Connection? = DriverManager.getConnection(jdbcUrl)
+        val connection: Connection? = DriverManager.getConnection(jdbcUrl)
 
         fun create(): ConnectDBmain {
             // factory method to create instances of ConnectDBmain class

@@ -21,6 +21,9 @@
     <!-- so it can discover devices in the background without manually allowing/disallowing connections -->
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <!-- so the app knows that Bluetooth and Bluetooth Low Energy are needed for the app-->
     <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
