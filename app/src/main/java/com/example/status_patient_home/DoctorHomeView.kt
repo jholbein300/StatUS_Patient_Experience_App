@@ -24,7 +24,7 @@ class DoctorHomeView : AppCompatActivity() {
         // set the text of the TextView
         greetingTextView.text = "Hello $userFName!"
 
-        val patientCareButton = findViewById<Button>(R.id.patientCareButton)
+        val patientCareButton = findViewById<Button>(R.id.patientCareHistory)
         patientCareButton.setOnClickListener() {
             val intent = Intent(this, DoctorView::class.java)
             startActivity(intent)
@@ -41,6 +41,13 @@ class DoctorHomeView : AppCompatActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
             finish()
+        }
+        //added by Brandon
+        val docActivityButton = findViewById<Button>(R.id.docActivityButton)
+        docActivityButton.setOnClickListener {
+
+            val intent = Intent(this, setActivity2::class.java)
+            startActivity(intent)
         }
     }
 }

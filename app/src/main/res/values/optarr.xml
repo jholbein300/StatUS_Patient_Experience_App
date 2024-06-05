@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- added by Brandon -->
+
+<resources>
+<string-array name="optarr">
+    <item>Unselected</item>
+    <item>Care</item>
+    <item>Pills</item>
+    <item>Food</item>
+    <item>Other</item>
+</string-array>
+</resources>

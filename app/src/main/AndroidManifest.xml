@@ -1,31 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- added for BLE beacon connectivity -->
-
     <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/> -->
-
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"/>
-    <!-- Below is only needed if you want to read the device name or establish a bluetooth connection
-    -->
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"/>
-
-    <!-- Below is only needed if you want to emit beacon transmissions -->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-
-    <!-- pubnub.com, android beacon tutorial recommendation for Bluetooth Device Discovery -->
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-
-
-    <!-- so it can discover devices in the background without manually allowing/disallowing connections -->
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-
-    <!-- so the app knows that Bluetooth and Bluetooth Low Energy are needed for the app-->
-    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
-
-    <!-- so the app can access the Internet-->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" /> <!-- Below is only needed if you want to read the device name or establish a bluetooth connection -->
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" /> <!-- Below is only needed if you want to emit beacon transmissions -->
+    <uses-permission android:name="android.permission.BLUETOOTH" /> <!-- pubnub.com, android beacon tutorial recommendation for Bluetooth Device Discovery -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> <!-- so it can discover devices in the background without manually allowing/disallowing connections -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> <!-- so the app knows that Bluetooth and Bluetooth Low Energy are needed for the app -->
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" /> <!-- so the app can access the Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -38,6 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StatUS_Patient_Home"
         tools:targetApi="31">
+        <activity
+            android:name=".setActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".setactivity"
+            android:exported="false"
+            android:theme="@style/Theme.StatUS_Patient_Home" />
         <activity
             android:name=".DoctorHomeView"
             android:exported="false" />

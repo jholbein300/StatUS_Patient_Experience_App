@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- added by Brandon -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".setActivity2">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:text="Please select an activity"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="44dp"
+        tools:layout_editor_absoluteY="66dp"
+        tools:ignore="MissingConstraints"  android:layout_height="100dip"/>
+
+    <Spinner
+android:id="@+id/Spinner2"
+style="@android:style/Widget.DeviceDefault.Light.Spinner"
+android:layout_width="250dip"
+android:layout_height="48dip"
+android:layout_marginTop="300dp"
+android:background="@color/atomic_tangerine"
+android:dropDownSelector="@color/silver_lake_blue"
+android:popupBackground="@color/beige_main"
+android:spinnerMode="dropdown"
+        android:entries="@array/optarr"
+android:tooltipText="Select Activity"
+app:layout_constraintBottom_toTopOf="@+id/textView2"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintHorizontal_bias="0.5"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent"
+tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,9 @@ data class Encounter(
     val uid: String,
     val roomId: String,
     val timeEnter: String,
-    val timeLeft: String)
+    val timeLeft: String,
+    //movementType added by Brandon
+    val movementType: String    )
 {
 }
 
@@ -26,7 +28,8 @@ fun grabEncounter(uid:String): Any {
     val rid:String
     val timeEnter:String
     val timeLeft:String
-
+    //mt added by Brandon
+    val mt: String
     lateinit var date : Array<String>
 
     // val because it is never changed; hard-coded for testing
@@ -73,17 +76,17 @@ fun grabEncounter(uid:String): Any {
 
         // getting the value of the timeLeft column
         timeLeft = result.getString("time_left")
-
+        mt = result.getString("movement_type")
         /*
         constructing a Movement object and putting data into the list
         */
 
-        val currentMovement = Movement(mid, uid, rid, timeEnter, timeLeft)
+        val currentMovement = Movement(mid, uid, rid, timeEnter, timeLeft, mt)
 
         movementUID4.add(currentMovement)
 
 
-        println("$mid $uid $rid $timeEnter $timeLeft")
+        println("$mid $uid $rid $timeEnter $timeLeft $mt")
         // or we do
         // println(currentMovement)
         return(currentMovement)
